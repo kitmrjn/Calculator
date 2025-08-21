@@ -1,14 +1,13 @@
 const operators = document.querySelectorAll('.operators');
 const numbers = document.querySelectorAll('.numbers');
-const myInput = document.querySelector("#operationInput");
+const screenDisplay = document.querySelector("#operationInput");
 const clear = document.querySelector('.clear');
 const equals = document.querySelector('.equals');
 
-let firstNumber;
-let secondNumber;
-let operator;
-let number;
-let newNum = "";
+let firstNumber = "";
+let secondNumber = "";
+let currentOperator = null;
+let resetScreen = false;
 
 
 function addition (num1, num2) {
@@ -24,47 +23,24 @@ function multiplication (num1, num2) {
 } ;
 
 function divide (num1, num2) {
+    if (num2 === "0") {
+        return "Error";
+    }
     return Number(num1) / Number(num2);
 };
 
-//alert(divide(prompt(`Enter first number`,), prompt(`Enter second number`,)));
-
-function operate (num1, operator, num2) {
-    if (operator === '+') {
-        return addition (num1, num2);
-    } else if (operator === '-') {
-        return subtraction (num1, num2);
-    } else if (operator === '*') {
-        return multiplication (num1, num2);
-    } else if (operator === '/') {
-        return divide (num1, num2);
-    } else {
-        return "invalid operator";
+function operate (operator, a, b) {
+    
+    switch (operate) {
+        case "+":
+            return addition (a, b);
+        case "-":
+            return subtraction (a, b);
+        case "x": 
+            return multiplication (a, b);
+        case "➗":   
+            return divide (a, b);
+        default: 
+            return null;
     }
-};
-
-numbers.forEach(button => {
-    button.addEventListener('click', function(){
-       myInput.value += this.textContent;
-        number = myInput.value;
-    });
-});
-
-operators.forEach(button => {
-    button.addEventListener('click', function () {
-        myInput.value += this.textContent;
-         number = myInput.value;
-    });
-});
-
-clear.addEventListener('click', function () {
-        myInput.value = "";
-    });
-
-
-
-
-equals.addEventListener('click',() => {
-    let result = eval(newNum);
-    myInput.value = result;
-});
+}
