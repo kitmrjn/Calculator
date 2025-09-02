@@ -24,14 +24,14 @@ function multiplication (num1, num2) {
 
 function divide (num1, num2) {
     if (num2 === "0") {
-        return "Error";
+        return alert ("Bich that won't work");
     }
     return Number(num1) / Number(num2);
 };
 
 function operate (operator, a, b) {
     
-    switch (operate) {
+    switch (operator) {
         case "+":
             return addition (a, b);
         case "-":
@@ -44,3 +44,49 @@ function operate (operator, a, b) {
             return null;
     }
 }
+
+
+numbers.forEach(button => {
+    button.addEventListener("click", () => {
+        if (resetScreen) {
+            screenDisplay.value = "";
+            resetScreen = false;
+        }
+        screenDisplay.value += button.textContent;
+    });
+});
+
+operators.forEach(button => {
+    button.addEventListener("click", () => {
+        if (currentOperator !== null && !resetScreen) {
+            secondNumber = screenDisplay.value;
+            const result = operate(currentOperator, firstNumber, secondNumber);
+            screenDisplay.value = Math.round(result);
+            firstNumber = result;
+        } else {
+            firstNumber = screenDisplay.value;
+        }
+        currentOperator = button.textContent;
+        resetScreen = true;
+    });
+});
+
+equals.addEventListener("click", () => {
+
+    if (currentOperator === null || resetScreen) return;
+    secondNumber = screenDisplay.value;
+    const result = operate(currentOperator, firstNumber, secondNumber);
+    screenDisplay.value = Math.round(result);   
+    firstNumber = result;
+    currentOperator = null;
+    resetScreen = true;
+});
+
+clear.addEventListener("click", () => {
+    
+    screenDisplay.value = "";
+    firstNumber = "";
+    secondNumber = "";
+    currentOperator = null;
+    resetScreen = false;
+})
