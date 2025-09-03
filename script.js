@@ -3,6 +3,7 @@ const numbers = document.querySelectorAll('.numbers');
 const screenDisplay = document.querySelector("#operationInput");
 const clear = document.querySelector('.clear');
 const equals = document.querySelector('.equals');
+const backspace = document.querySelector('.delete');
 
 let firstNumber = "";
 let secondNumber = "";
@@ -61,8 +62,8 @@ operators.forEach(button => {
         if (currentOperator !== null && !resetScreen) {
             secondNumber = screenDisplay.value;
             const result = operate(currentOperator, firstNumber, secondNumber);
-            screenDisplay.value = Math.round(result);
-            firstNumber = result;
+            screenDisplay.value = result;
+            firstNumber = roundResult(result);
         } else {
             firstNumber = screenDisplay.value;
         }
@@ -76,7 +77,7 @@ equals.addEventListener("click", () => {
     if (currentOperator === null || resetScreen) return;
     secondNumber = screenDisplay.value;
     const result = operate(currentOperator, firstNumber, secondNumber);
-    screenDisplay.value = Math.round(result);   
+    screenDisplay.value = roundResult(result);   
     firstNumber = result;
     currentOperator = null;
     resetScreen = true;
@@ -88,5 +89,14 @@ clear.addEventListener("click", () => {
     firstNumber = "";
     secondNumber = "";
     currentOperator = null;
+    resetScreen = false;
+})
+
+function roundResult (num) {
+    return Math.round(num * 1000) / 1000;
+}
+
+backspace.addEventListener("click", () => {
+    screenDisplay.value = screenDisplay.value.slice(0, -1);
     resetScreen = false;
 })
