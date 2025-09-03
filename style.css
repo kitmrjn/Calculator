@@ -29,6 +29,7 @@ body{
 
 
 button{
+    font-family: "Oswald", sans-serif;
     width: 60px;
     font-size: 15px;
     flex-grow: 1;
@@ -45,6 +46,7 @@ input{
 }
 
 #operationInput{
+    font-family: "Oswald", sans-serif;
     text-align: right;
     background-color: #d9c4b0;
     border: none;
