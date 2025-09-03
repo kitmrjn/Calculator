@@ -1,14 +1,53 @@
+body{
+    margin-top: 50px;
+    display: flex;
+    background-color:#BBDCE5;
+    align-items: center;
+    justify-content: center;
+}
 .container{
     width: 300px;
+    height: 500px;
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
+    background-color: #eceedf;
+    padding: 20px;
+    border-radius: 2px;
 }
+
+.deleters{
+    width: 300px;
+    display: flex;
+    gap: 10px;
+}
+
+.clear, .delete{
+    flex-grow: 1;
+}
+
+
 
 button{
     width: 60px;
+    font-size: 15px;
+    flex-grow: 1;
+    background-color: #CFAB8D;
+    border: none;
+    border-radius: 2px;
+    font-size: 20px;
+    color: rgb(46, 41, 41);
 }
 
 input{
     width: 250px;
+    flex-grow: 1;
+}
+
+#operationInput{
+    text-align: right;
+    background-color: #d9c4b0;
+    border: none;
+    border-radius: 2px;
+    font-size: 30px;
 }
